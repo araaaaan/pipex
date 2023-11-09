@@ -1,6 +1,12 @@
 #include "pipex.h"
 
-void ft_free(char **str)
+void	error_msg(char *str)
+{
+	perror(str);
+	exit(1);
+}
+
+void	ft_free(char **str)
 {
 	int i;
 
@@ -58,8 +64,5 @@ void ft_execve(char *argv, char **env)
 	}
 	ft_free(cmd);
 	if ((!path) || result == -1)
-	{
-		perror("error");
-		exit(1);
-	}
+		error_msg("error");
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaaaaran <aaaaaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arlee <arlee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:47:00 by arlee             #+#    #+#             */
-/*   Updated: 2023/11/08 18:03:33 by aaaaaran         ###   ########.fr       */
+/*   Updated: 2023/11/09 20:51:36 by arlee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,9 @@ void parent_process(char **argv, char **env, int *fd)
 {
 	int open_fd;
 
-	open_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0777);
+	open_fd = open(argv[4], O_WRONLY | O_CREAT | O_TRUNC, 0644);
 	if (open_fd == -1)
-	{
-		perror("error");
-		exit(1);
-	}
+		error_msg("error");
 	dup2(open_fd, 1);
 	dup2(fd[0], 0);
 	close(fd[1]);
@@ -35,10 +32,7 @@ void child_process(char **argv, char **env, int *fd)
 
 	open_fd = open(argv[1], O_RDONLY, 0777);
 	if (open_fd == -1)
-	{
-		perror("error");
-		exit(1);
-	}
+		error_msg("error");
 	dup2(open_fd, 0);
 	dup2(fd[1], 1);
 	close(fd[0]);
@@ -53,24 +47,17 @@ int main(int argc, char **argv, char **env)
 
 	if (argc != 5)
 	{
-		ft_putstr_fd("./pipex infile cmd cmd outfile\n", 1);
+		ft_putstr_fd("./pipex infile cmd cmd outfile\n", 2);
 		//exit(1);
 	}
 	if (pipe(fd) == -1)
-	{
-		perror("no pipe");
-		exit(1);
-	}
+		error_msg("pipe");
 	pid = fork();
 	if (pid == -1)
-	{
-		perror("no fork");
-		exit(1);
-	}
-		
+		error_msg("fork");
 	if (!pid)
 		child_process(argv, env, fd);
-	// waitpid(pid, NULL, WNOHANG);
+	waitpid(pid, NULL, WNOHANG);
 	parent_process(argv, env, fd);
 	return (0);
 }
