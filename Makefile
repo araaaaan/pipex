@@ -1,6 +1,6 @@
 NAME = pipex
 CC = gcc
-CFLAGS = -Werror -Wall -Wextra -fsanitize=address
+CFLAGS = -Werror -Wall -Wextra
 RM = rm -rf
 LIB = libft/libft.a
 
