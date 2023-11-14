@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlee <arlee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aaaaaran <aaaaaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:47:00 by arlee             #+#    #+#             */
-/*   Updated: 2023/11/09 20:51:36 by arlee            ###   ########.fr       */
+/*   Updated: 2023/11/14 13:06:31 by aaaaaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ int main(int argc, char **argv, char **env)
 		error_msg("fork");
 	if (!pid)
 		child_process(argv, env, fd);
-	waitpid(pid, NULL, WNOHANG);
+	//waitpid(pid, NULL, WNOHANG);
 	parent_process(argv, env, fd);
 	return (0);
 }
