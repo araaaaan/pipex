@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlee <arlee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aaaaaran <aaaaaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/14 13:30:16 by arlee             #+#    #+#             */
-/*   Updated: 2023/08/14 17:07:58 by arlee            ###   ########.fr       */
+/*   Updated: 2023/11/14 19:54:07 by aaaaaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,6 @@ size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 		dst[i] = src[i];
 		i++;
 	}
-	dst[i] = '\0'; 
+	dst[i] = '\0';
 	return (src_len);
 }
