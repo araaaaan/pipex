@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arlee <arlee@student.42.fr>                +#+  +:+       +#+        */
+/*   By: aaaaaran <aaaaaran@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/14 20:01:36 by aaaaaran          #+#    #+#             */
-/*   Updated: 2023/11/16 19:27:42 by arlee            ###   ########.fr       */
+/*   Updated: 2023/11/18 16:18:43 by aaaaaran         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	ft_free(char **str)
 		free(str[i]);
 		i++;
 	}
-	free(str[i]);
+	//free(str[i]);
 	free(str);
 }
 
@@ -67,6 +67,7 @@ void	ft_execve(char *argv, char **envp)
 	char	*path;
 	char	**cmd;
 
+	path = NULL;
 	cmd = ft_split(argv, ' ');
 	path = find_path(cmd[0], envp);
 	if (path)
