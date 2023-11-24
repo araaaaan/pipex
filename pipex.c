@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipex.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aaaaaran <aaaaaran@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arlee <arlee@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/24 18:47:00 by arlee             #+#    #+#             */
-/*   Updated: 2023/11/20 16:42:15 by aaaaaran         ###   ########.fr       */
+/*   Updated: 2023/11/23 16:23:28 by arlee            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,11 @@ void	child_process(char **argv, char **envp, int *fd)
 	open_fd = open(argv[1], O_RDONLY, 0777);
 	if (open_fd == -1)
 		error_msg("error");
-	//close(fd[0]);
 	dup2(fd[1], 1);
 	close(fd[1]);
 	dup2(open_fd, 0);
-	
 	close(fd[0]);
 	close(open_fd);
-	//dup2(fd[1], 1);
 	ft_execve(argv[2], envp);
 }
 
@@ -56,10 +53,10 @@ int	main(int argc, char **argv, char **envp)
 		exit(1);
 	}
 	if (pipe(fd) == -1)
-		error_msg("pipe");
+		error_msg("No pipe");
 	pid = fork();
 	if (pid == -1)
-		error_msg("fork");
+		error_msg("No fork");
 	if (pid == 0)
 		child_process(argv, envp, fd);
 	waitpid(pid, NULL, WNOHANG);
